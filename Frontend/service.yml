@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata: 
+  name: nodefrontend
+  namespace: test
+spec:
+  ports:
+  - port: 3000
+    protocol: TCP
+  type: ClusterIP
+  selector:
+    App: frontend

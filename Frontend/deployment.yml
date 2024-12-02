@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nodefrontend
+  namespace: test
+  labels:
+    app: frontend
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 25%
+  selector:
+    matchLabels: 
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec: 
+      containers:
+        - name: nodejsbackend
+          image: shubhamt7979/nodejsapp
+          ports:
+            - containerPort: 3000
